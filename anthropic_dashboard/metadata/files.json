@@ -1,0 +1,52 @@
+{
+  "20241024_192332_mcpc.pdf": {
+    "original_name": "mcpc.pdf",
+    "type": "rag",
+    "timestamp": "20241024_192332",
+    "filepath": "./uploads/20241024_192332_mcpc.pdf"
+  },
+  "20241024_192344_serialConnectionProtocol.py": {
+    "original_name": "serialConnectionProtocol.py",
+    "type": "rag",
+    "timestamp": "20241024_192344",
+    "filepath": "./uploads/20241024_192344_serialConnectionProtocol.py"
+  },
+  "20241024_193055_serialConnectionProtocol.py": {
+    "original_name": "serialConnectionProtocol.py",
+    "type": "prompt",
+    "timestamp": "20241024_193055",
+    "filepath": "./prompt_files/20241024_193055_serialConnectionProtocol.py"
+  },
+  "20241024_193513_mcpc.pdf": {
+    "original_name": "mcpc.pdf",
+    "type": "rag",
+    "timestamp": "20241024_193513",
+    "filepath": "./uploads/20241024_193513_mcpc.pdf"
+  },
+  "20241024_193600_serialConnectionProtocol.py": {
+    "original_name": "serialConnectionProtocol.py",
+    "type": "prompt",
+    "timestamp": "20241024_193600",
+    "filepath": "./prompt_files/20241024_193600_serialConnectionProtocol.py"
+  },
+  "20241024_193859_serialConnectionProtocol.py": {
+    "original_name": "serialConnectionProtocol.py",
+    "type": "prompt",
+    "timestamp": "20241024_193859",
+    "filepath": "./prompt_files/20241024_193859_serialConnectionProtocol.py"
+  },
+  "20241024_194214_serialConnectionProtocol.py": {
+    "original_name": "serialConnectionProtocol.py",
+    "type": "prompt",
+    "timestamp": "20241024_194214",
+    "filepath": "./prompt_files/20241024_194214_serialConnectionProtocol.py"
+  },
+  "20241025_044458_serialConnectionProtocol.py": {
+    "original_name": "serialConnectionProtocol.py",
+    "type": "prompt",
+    "timestamp": "20241025_044458",
+    "filepath": "./prompt_files/20241025_044458_serialConnectionProtocol.py",
+    "size": 36880,
+    "content_type": "data:text/x-python;base64"
+  }
+}
