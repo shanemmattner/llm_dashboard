@@ -181,15 +181,14 @@ class DocumentManager:
             return False
 
     def get_prompt_context(self, filenames: Optional[List[str]] = None) -> str:
-        """Get combined content of selected prompt files"""
+        """Get combined content of selected prompt files."""
         if not filenames:
-            return ""
-        
+            filenames = list(self.prompt_files.keys())
+
         contexts = []
         for filename in filenames:
             if filename in self.prompt_files:
                 contexts.append(f"Content from {filename}:\n{self.prompt_files[filename]}\n")
-        
         return "\n".join(contexts)
 
     def get_file_list(self, file_type: Optional[str] = None) -> List[Dict]:

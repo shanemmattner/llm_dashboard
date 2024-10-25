@@ -1,0 +1,5 @@
+{
+  "error": "'RAGManager' object has no attribute '_init_embeddings'",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/shane/Desktop/llm_dashboard/anthropic_dashboard/rag_utils.py\", line 62, in _setup_components\n    self._init_embeddings()\n    ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'RAGManager' object has no attribute '_init_embeddings'\n",
+  "timestamp": "2024-10-25T05:06:48.072753"
+}

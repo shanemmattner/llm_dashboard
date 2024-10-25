@@ -130,6 +130,7 @@ class RAGDashboard:
                 
                 # Upload output
                 html.Div(id='rag-upload-output', className="mb-3"),
+                html.Div(id='rag-clear-output', className="mb-3"),
                 
                 # Control buttons
                 dbc.ButtonGroup([
@@ -468,33 +469,33 @@ class RAGDashboard:
 
         @self.app.callback(
             [Output('file-selector', 'options'),
-             Output('file-selector', 'value')],
+            Output('file-selector', 'value')],
             [Input('rag-upload-output', 'children'),
-             Input('clear-rag', 'n_clicks')]
+            Input('rag-clear-output', 'children')],
+            prevent_initial_call=True
         )
-        def update_file_selector(upload_output, clear_clicks):
-            """Update file selector with improved metadata"""
+        def update_file_selector(upload_output, clear_output):
             try:
                 files = self.rag_manager.get_document_list()
                 options = []
-                
                 for doc in files:
                     label = f"{doc['filename']}"
                     if doc.get('total_pages'):
                         label += f" ({doc['total_pages']} pages)"
                     if doc.get('chunk_count'):
                         label += f" - {doc['chunk_count']} chunks"
-                        
+
                     options.append({
                         'label': label,
-                        'value': doc['filepath']
+                        'value': doc['filepath']  # Ensure this is the absolute path
                     })
-                
+
                 return options, []
                 
             except Exception as e:
                 logger.error(f"Error updating file selector: {e}")
                 return [], []
+
 
         @self.app.callback(
             Output('query-output', 'children'),
@@ -514,6 +515,11 @@ class RAGDashboard:
             if not submit_clicks or not query:
                 return html.Div()
             
+            selected_files_info = html.Div([
+                html.H5("Selected Files:"),
+                html.Ul([html.Li(f) for f in selected_files or ['All Files']])
+            ])
+            
             try:
                 # Get direct context if requested
                 context = ""
@@ -530,6 +536,7 @@ class RAGDashboard:
                 # Display results
                 return html.Div([
                     # Answer section
+                    selected_files_info,
                     dbc.Card([
                         dbc.CardHeader("Answer"),
                         dbc.CardBody(
@@ -633,6 +640,27 @@ class RAGDashboard:
                     color="danger"
                 )
                 return error_content, error_content
+        @self.app.callback(
+            Output('rag-clear-output', 'children'),
+            Input('clear-rag', 'n_clicks'),
+            prevent_initial_call=True
+        )
+        def clear_rag_store(n_clicks):
+            """Clear the RAG vector store when the Clear Store button is clicked."""
+            if n_clicks:
+                try:
+                    self.rag_manager.clear_store()
+                    return dbc.Alert(
+                        "RAG vector store cleared successfully.",
+                        color="success"
+                    )
+                except Exception as e:
+                    logger.error(f"Error clearing RAG store: {e}")
+                    return dbc.Alert(
+                        f"Error clearing RAG store: {e}",
+                        color="danger"
+                    )
+            return dash.no_update
 
     def run(self, debug: bool = True, port: int = 8050):
         """Run the dashboard application"""

@@ -293,11 +293,11 @@ class RAGManager:
             where_filter = None
             if rag_files:
                 normalized_files = [os.path.abspath(f) for f in rag_files]
-                available_files = set(doc['filepath'] for doc in all_docs)
+                available_files = set(os.path.abspath(doc['filepath']) for doc in all_docs)
                 valid_files = [f for f in normalized_files if f in available_files]
                 
                 if valid_files:
-                    where_filter = {"source": {"$in": valid_files}}
+                    where_filter = {"source": {"$in": valid_files}}                
                 else:
                     return {
                         'result': "None of the selected files are available for querying.",
@@ -308,7 +308,7 @@ class RAGManager:
             # Query collection
             results = self.collection.query(
                 query_texts=[query],
-                n_results=10,
+                n_results=1000,
                 where=where_filter,
                 include=['metadatas', 'documents', 'distances']
             )
